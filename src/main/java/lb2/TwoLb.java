@@ -1,9 +1,6 @@
 package lb2;
 
-import lb1.OneLb;
 import mpi.MPI;
-import mpi.MPIException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
