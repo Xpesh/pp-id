@@ -20,7 +20,7 @@ public class OneLb {
     }
 
     private static void load(){
-        for(long i=0;i<20000000L;i++){
+        for(long i=0;i<200000000L;i++){
             Math.sqrt(System.currentTimeMillis());
         }
     }

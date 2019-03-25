@@ -43,7 +43,6 @@ public class ThreeLb {
             if (me == 0) {
                 System.out.format("Time: %f seconds\n", ((end - start)/ 1000L));
                 System.out.println("Pi = " + pi[0]);
-                System.out.format("Pi is approximately %.16f\n",pi[0]);
             }
         } catch (MPIException e) {
             e.printStackTrace();
