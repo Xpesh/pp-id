@@ -1,5 +1,4 @@
 package lb6;
-
 import mpi.*;
 
 public class Shift {
@@ -7,6 +6,7 @@ public class Shift {
         final int dimsNum = 1;
         int rank, size;
         Cartcomm cart;
+        Status status;
         int[] a, b;
         int[] dims = new int[dimsNum];
         boolean[] periods = {true};
@@ -23,7 +23,9 @@ public class Shift {
         cart = MPI.COMM_WORLD.Create_cart(dims, periods, reorders);
         ShiftParms shift = cart.Shift(0, 1);
 
-        cart.Sendrecv(a, 0, 1, MPI.INT, shift.rank_dest, 0, b, 0, 1, MPI.INT, shift.rank_source, 0);
+        cart.Sendrecv(a, 0, 1, MPI.INT, shift.rank_dest, 0, b, 0,
+                1, MPI.INT, shift.rank_source, 0);
+        System.out.printf("rank = %d source = %d dest = %d\n", rank, shift.rank_source, shift.rank_dest);
         System.out.printf("rank = %d b = %d\n", rank, b[0]);
 
         cart.Free();

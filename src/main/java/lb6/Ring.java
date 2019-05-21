@@ -1,10 +1,6 @@
 package lb6;
 
-
-import mpi.Cartcomm;
-import mpi.MPI;
-import mpi.ShiftParms;
-import mpi.Status;
+import mpi.*;
 
 public class Ring {
     public static void run(String[] args) {
@@ -12,6 +8,7 @@ public class Ring {
         final int dimsNum = 1;
         int rank, size;
         Cartcomm cart;
+        Status status;
         int[] a, b;
         int[] dims = new int[dimsNum];
         boolean[] periods = {true};
@@ -38,11 +35,10 @@ public class Ring {
             cart.Send(a, 0, 1, MPI.INT, shift.rank_dest, 12);
         }
 
-//        System.out.printf("rank = %d b = %d\n", rank, b[0]);
+        //System.out.printf("rank = %d b = %d\n", rank, b[0]);
 
         cart.Free();
         MPI.Finalize();
-
 
     }
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ThreeLb {
 
-    public static void run(String args[]) throws Exception {
+    public static void run(String args[]){
         int[] intervals = new int[1];
         double[] mypi = new double[1];
         double[] pi = new double[1];
@@ -17,7 +17,7 @@ public class ThreeLb {
         double h, x;
         double sum;
         try {
-            args = MPI.Init(args);
+            MPI.Init(args);
             int me = MPI.COMM_WORLD.Rank();
             int size = MPI.COMM_WORLD.Size();
             if (me == 0) {
@@ -44,7 +44,7 @@ public class ThreeLb {
                 System.out.format("Time: %f seconds\n", ((end - start)/ 1000L));
                 System.out.println("Pi = " + pi[0]);
             }
-        } catch (MPIException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             MPI.Finalize();

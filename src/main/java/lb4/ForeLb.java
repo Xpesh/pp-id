@@ -15,6 +15,7 @@ public class ForeLb {
         }
 
         if (rank == 0) {
+            System.out.print("Начальный ");
             printArray(array);
             MPI.COMM_WORLD.Send(array, 0, size, MPI.INT, rank + 1, 0);
             MPI.COMM_WORLD.Recv(array, 0, size, MPI.INT, size - 1, 0);
