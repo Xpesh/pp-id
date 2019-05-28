@@ -23,33 +23,7 @@ public class Line {
 
         Cartcomm.Dims_create(size, dims);
         cart = MPI.COMM_WORLD.Create_cart(dims, periods, reorders);
-//        newCoords = cart.Coords(rank);
-//        a[0] = newCoords[0];
-//
-//        if (newCoords[0] == 0) {
-//            sourcem = destm = MPI.PROC_NULL;
-//        } else {
-//            sourcem = destm = newCoords[0] - 1;
-//        }
-//        if (newCoords[0] == dims[0] - 1) {
-//            destb = sourceb = MPI.PROC_NULL;
-//        } else {
-//            destb = sourceb = newCoords[0] + 1;
-//        }
-//
-//        try {
-//            cart.Sendrecv(a, 0, 1, MPI.INT, destb, 12, b, 0, 1, MPI.INT, sourcem, 12);
-//            System.out.printf("rank %d firstbock new coords = %d, b = %d\n", rank, newCoords[0], b[0]);
-//
-//            cart.Sendrecv(a, 0, 1, MPI.INT, destm, 12, b, 0, 1, MPI.INT, sourceb, 12);
-//            System.out.printf("rank %d new coords = %d, b = %d\n", rank, newCoords[0], b[0]);
-//        } catch (MPIException e) {
-//            System.out.println(rank);
-//        }
-
         ShiftParms shift = cart.Shift(0, 1);
-
-        //System.out.printf("rank = %d source = %d dest = %d\n", rank, shift.rank_source, shift.rank_dest);
 
         if (rank == 0) {
             cart.Send(a, 0, 1, MPI.INT, shift.rank_dest, 12);
